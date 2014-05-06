@@ -1,0 +1,157 @@
+# Import Data
+
+Collection of syntax snippets demonstrating how to import data into R.
+
+Import from:
+
+- Text File
+- Excel File
+- Statistics Package
+- Database
+
+## Text File
+
+There are two different ways to import text files.
+
+- Base R
+- Hmisc
+
+### Base R
+
+```{r CsvExampleBase eval=FALSE, echo=TRUE}
+foo <- read.csv(file = FileName,
+                ,header = TRUE
+                ,sep = ","
+                ,quote = "\""
+                ,dec = "."
+                ,fill = TRUE
+                ,comment.char = "#"
+                )
+```
+
+### Hmisc
+
+_Import a Single File_
+
+```{r CsvExampleHmisc eval=FALSE, echo=TRUE}
+library(Hmisc)
+file_name <- "data/file.csv"
+foo <- csv.get(file = FileName
+               ,datevars = c()
+               ,dateformat = "%m/%d/%Y"
+               ,comment.char = "#"
+              )
+```
+
+_Import Multiple Files_
+
+This imports a series of files and concatenates them together.
+
+```{r CsvExampleMultiple eval=FALSE, echo=TRUE}
+library(Hmisc)
+file_list <- list.files(pattern="*.csv")
+
+for (file in file_list)
+{
+  # if the merged dataset doesn't exist, creates it 
+  if (!exists("tbl"))
+    {
+      tbl <- csv.get(file = file
+                     ,datevars = c()
+                     ,dateformat = "%m/%d/%Y"
+                     ,comment.char = "#"
+                     )
+    }
+  else
+    {
+      tmp <- csv.get(file = file
+                     ,datevars = c()
+                     ,dateformat = "%m/%d/%Y"
+                     ,comment.char = "#"
+                     )
+      tbl<-rbind(tbl, tmp)
+      rm(tmp)
+    } 
+}
+```
+
+
+## Excel File
+
+```{r ExcelExample eval=FALSE, echo=TRUE}
+library(XLConnect)
+file_name <- "data/foo.xlsx"
+workbook <- loadWorkbook(file_name, create = FALSE)
+readWorksheet(
+              object = workbook
+              ,sheet = 'Sheet1'
+              ,region = 'A1:Z10'
+              ,header = TRUE
+              ,forceConversion = FALSE
+              ,dateTimeFormat  # Defaults to getOption("XLConnect.dateTimeFormat")
+              ,check.names=TRUE
+             )
+```
+
+
+## Statistics Packages
+
+### SPSS File
+
+```{r SpssExample eval=FALSE, echo=TRUE}
+library(foreign)
+file_name <- "data/foo.bar"
+foo <- read.spss(file = file_name,
+                 use.value.labels = TRUE,
+                 to.data.frame = FALSE,
+                 max.value.labels = Inf,
+                 trim.factor.names = FALSE,
+                 trim_values = TRUE,
+                 reencode = NA,
+                 use.missings = to.data.frame
+                )
+```
+
+### Stata DTA file
+
+```{r StataExample eval=FALSE, echo=TRUE}
+library(foreign)
+file_name <- "data/foo.bar"
+foo <- read.dta(file = file_name,
+                convert.dates = TRUE,
+                convert.factors = TRUE,
+                missing.type = FALSE,
+                convert.underscore = FALSE,
+                warn.missing.labels = TRUE
+               )
+```
+
+
+## Database
+
+```{r RodbcExample eval=FALSE, echo=TRUE}
+library(RODBC)
+con <- odbcConnect("DSN", "UserID", "PassWord")
+qry <- paste(
+             'SELECT * '
+             ,'FROM tblName'
+             ,'WHERE foo=foo'
+             ,'ORDER foo'
+             ,sep=" "
+            )
+data_frame <- sqlQuery(con, qry)
+```
+
+If you are using the Analytics Template system, you should configure
+the "odbcConnect()" string in config.R file.
+
+```{r RodbcExample eval=FALSE, echo=TRUE}
+con <- odbcConnect("DSN", "UserID", "PassWord")
+```
+
+Another nice way to read in a query from an external file is this:
+
+```{r RodbcExample eval=FALSE, echo=TRUE}
+qry <- readLines("sql/query_file.sql")
+data_frame <- sqlQuery(con, qry)
+```

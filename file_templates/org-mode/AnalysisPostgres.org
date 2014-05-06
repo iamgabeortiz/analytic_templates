@@ -1,0 +1,42 @@
+#+title: Document Title
+#+author: Author Name
+#+date: Date Edited
+#+options: ^:nil
+
+* README
+  Before using this template, do a quick find/replace. 
+  UserName --> User name used to log into the database.
+  Database --> Name of the database you are working on.
+  ServerIP --> The URL or IP address of your Postgres server.
+
+  Doing this before trying to use the template will make things
+  easier for you.
+
+** Schemas
+    #+begin_src sql :engine postgresql :exports both :cmdline -h ServerIP -d Database -U UserName
+      SELECT distinct table_schema
+      FROM information_schema.tables 
+      where 
+          table_schema not like 'pg_catalog' 
+          and table_schema not like 'information_schema'
+      ;
+    #+end_src
+** Tables - public
+   #+begin_src sql :engine postgresql :exports both :cmdline -h ServerIP -d Database -U UserName
+     SELECT table_name 
+     FROM information_schema.tables 
+     WHERE table_schema = 'public';  
+   #+end_src
+
+   _Table 1_
+   #+begin_src sql :engine postgresql :exports both :cmdline -h ServerIP -d Database -U UserName     
+     SELECT column_name 
+     FROM information_schema.columns 
+     WHERE table_name ='table';   
+   #+end_src
+* Section
+  Description
+
+  #+begin_src sql :engine postgresql :exports both :cmdline -h ServerIP -d Database -U UserName
+    select current_date ;  
+  #+end_sr

@@ -1,0 +1,31 @@
+#+title: Document Title
+#+author: Author Name
+#+date: Date Edited
+#+options: ^:nil
+
+* README
+  This analytic template contains a mixture of R and SQL code blocks
+  that I find useful for quick prjects For projects that don't
+  conform to this pattern, you may find template_simple.org to be
+  more useful.
+* Initialize Session
+  #+begin_src R :session exports: both     
+
+  #+end_src
+
+* Import Data
+  #+begin_src R :session exports: both 
+    # ==============================================================================
+    # Load Data / Queries
+    # ==============================================================================
+    #LoadProject()
+    
+  #+end_src
+* Data Processing
+  #+begin_src R :session exports: both 
+
+  #+end_src
+* Analysis
+  #+begin_src R :session exports: both 
+
+  #+end_src
