@@ -1,8 +1,3 @@
-% Analytic Templates
-% Analytic Templates
-% Andy Choens
-
-
 # Project Description
 
 A collection of folders and templates intended to provide structure
