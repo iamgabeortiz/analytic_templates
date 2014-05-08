@@ -40,7 +40,7 @@ packages <- c(
     ##,"data.table"
     ##,"devtools"
     ##,"dplyr"
-    ##"foreign"
+    ##f"oreign"
     ##,"gdata"
     ##,"ggmap"
     ##,"ggplot2"
@@ -50,7 +50,7 @@ packages <- c(
     ##,"gplots"
     ##,"gtools"
     ##,"Hmisc"
-    ##,"httr""
+    ##,"httr"
     ##,"jsonlite"
     ##,"knitr"
     ##,"lme4"
@@ -166,7 +166,7 @@ options(
     ## Sourced Files -----------------------------------------------------------
     ## Use carefully. Everything must be declared globally.
 
-    
+
 }
 
 
@@ -180,5 +180,5 @@ options(
     ## Uncomment this to close ALL RODBC connections on exit.
     ## Can cause errors if you use "con" for anything other than DB connections.
     #if(!exists("con")){odbcClose(con)}
- 
+
 }
