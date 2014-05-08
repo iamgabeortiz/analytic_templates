@@ -8,6 +8,10 @@ This is probably the third or fourth time I have dropped everything
 from GitHub and started over. Hopefully this is the last time I
 restart this thing.
 
+As of today (2014-05-07), this is in rough shape, but I'm going to go
+ahead and start inviting people to help me with it. Crowdsourcing FTW!
+
+
 # Organization
 
 The Analytic Templates project is divided up into six parts.
