@@ -7,7 +7,12 @@
 ##
 ## #############################################################################
 
-##load(file="data/.RData")
+
+
+##load(file="data/foo.RData")
+##source("lib/file_name.R")
+
+
 
 ## =============================================================================
 ## Section Header
@@ -45,7 +50,7 @@
 
 ##save(
 ##   list = ls()
-##    ,file = "data/.RData"
+##    ,file = "data/foo.RData"
 ##   )
 
-q()
+##odbcClose(con)

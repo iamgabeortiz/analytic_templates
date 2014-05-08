@@ -7,50 +7,43 @@
 ##
 ## #############################################################################
 
+
+
 ## =============================================================================
-## Initialize Session
+## Initialize
 ## =============================================================================
 
-rm(list=ls())
-.First()
+## Reset global environment.
+##rm(list=ls())
+##.First()
 
-## ---------- Libraries ----------
+## ---------- Libraries --------------------------------------------------------
 ##library("package_name")
 
-## ---- Sourced Files ----------
+## ---- Sourced Files ----------------------------------------------------------
 ##source("lib/file_name.R")
 
-## ---------- Variables ----------
+## ---------- Variables --------------------------------------------------------
 
 
 ## -----------------------------------------------------------------------------
 ## Load Data / Queries
 ## -----------------------------------------------------------------------------
 
-## ---------- Import Data From Files ----------
-##source("data/import.R")
-##source("data/preprocess.R")
+## ---------- Import Data From Files -------------------------------------------
+##source("import.R")
+##source("preprocess.R")
 
-## ---------- Load Data R Data ----------
-##load(file="data/.RData")
+## ---------- Load Data R Data -------------------------------------------------
+##load(file="data/foo.RData")
 
-## ---------- ODBC Connection ----------
+## ---------- ODBC Connection --------------------------------------------------
 
 ## Initializes the ODBC connection defined in .Rprofile.
 ## odbcStart()
+## qry <- "select * from foo ;"
+## tbl <- sqlQuery( con, qry, stringsAsFactors = FALSE )
 
-## Use this if you want to write in the query directly.
-## tbl <- sqlQuery(con
-##                 , "select * from "
-##                 , stringsAsFactors=TRUE
-##                )
-
-## Use this if you want to pull in a query from an external file.
-## qry <- paste( readLines('sql/file_name.sql'), collapse='\n' )
-## tbl <- sqlQuery(con
-##                 ,qry
-##                 ,stringsAsFactors=TRUE
-##                )
 
 
 ## =============================================================================
@@ -61,33 +54,35 @@ rm(list=ls())
 ## Section 01
 ## -----------------------------------------------------------------------------
 
-## ---------- xxx ----------
+## ---------- Subsection A -----------------------------------------------------
 
 
-## ---------- xxx ----------
+## ---------- Subsection B -----------------------------------------------------
 
 
 ## -----------------------------------------------------------------------------
 ## Section 02
 ## -----------------------------------------------------------------------------
 
-## ---------- xxx ----------
+## ---------- Subsection A -----------------------------------------------------
 
 
+## ---------- Subsection B -----------------------------------------------------
 
-## ---------- xxx ----------
 
 
 ## =============================================================================
 ## Exit
 ## =============================================================================
 
-save(
-    list = ls()
-    ,file = "data/.RData"
-    )
+## Saves imported data into a .RData file in the data folder.
+##save(
+##    list = ls()
+##    ,file = "data/foo.RData"
+##    )
 
-## Uncomment this if you are openned an ODBC connection.
+## Close open ODBC connections!
 ##odbcClose(con)
 
+## Exit from R upon completion.
 ##q()
