@@ -68,6 +68,7 @@ packages <- c(
     ##,"RODBC"
     ##,"roxygen"
     ##,"quantmod"
+    ##,"scales"
     ##,"slidify"
     ##,"sp"
     ##,"stringr"
