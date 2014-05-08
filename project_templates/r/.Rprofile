@@ -3,80 +3,84 @@
 ##
 ## Sections:
 ## - Packages
-## - Package Config
+##    + Load Packages
+##    + Config Package
+## - Variables
 ## - Sourced Files
 ## - R Config
+## - .First()
+## - .Last()
 ## #############################################################################
-
 
 ## =============================================================================
 ## Packages
 ##
 ## - Uncomment all packages you need.
 ## - Missing packages will be installed.
-## - Then all packages will be loaded into the active session.
 ##
 ## NOTE:
-## - The process may appear stalled if it needs to install several packages.
+## - Your FIRST package should not begin with a ",".
+## - First run may appear stalled if many packages must be installed.
 ##
 ## =============================================================================
 
+## -----------------------------------------------------------------------------
+## Load Packages
+##
+## Declare the list of packages to load when this project starts.
+## Any packages not already present will be installed.
+##
+## You can add to the packages vector and reload with .loadLibrary(packages)
+##
+## -----------------------------------------------------------------------------
+require(utils)
 packages <- c(
-    
-    ## Your FIRST package should NOT start with a comma!
-    
-    ## ---------------- Data Import / Export ----------------
-    ##'foreign'
-    ##,'RODBC'
-    ##,'XLConnect'
-    ## ---------------- Data Processing ---------------------
-    ##,'data.table'
-    ##,'devtools'
-    ##,'dplyr'
-    ##,'foreign'
-    ##,'Hmisc'
-    ##,'knitr'
-    ##,'stringr'
-    ##,'testthat'
-    ## ---------------- Graphics ----------------------------
-    ##,'ggplot2'
+    ##,"data.table"
+    ##,"devtools"
+    ##,"dplyr"
+    ##"foreign"
+    ##,"ggplot2"
+    ##,"gmodels"
+    ##,"Hmisc"
+    ##,"knitr"
+    ##,"RODBC"
+    ##,"stringr"
+    ##,"testthat"
+    ##,"XLConnect"
     )
-if(length(packages[!packages %in% installed.packages()]) > 0 ) {
-    paste("Installing the following packages:")
-    paste(packages[!packages %in% installed.packages()])
-    install.packages( packages[!packages %in% installed.packages()] )
+.loadLibrary <- function(packages){
+    if(length(packages[!packages %in% installed.packages()]) > 0 ) {
+        install.packages( packages[!packages %in% installed.packages()] )
+    }
+    lapply(packages, library, character.only=T)
 }
-paste("Loading the following packages:")
-paste(packages)
-lapply(packages, library, character.only=T)
+.loadLibrary(packages)
 
+## Uncomment this if you do not want to see the packages loaded list.
+##rm("packages")
 
-## =============================================================================
-## Package Config
-##
-## - Packages are listed in alphabetical order.
-##
-## =============================================================================
 
 ## -----------------------------------------------------------------------------
-## knitr
+## Config Packages
 ## -----------------------------------------------------------------------------
 
-## Markdown -> HTML Style
+## ---------- knitr ------------------------------------------------------------
+
 ##library(knitr)
-##options(
-##    rstudio.markdownToHTML = function(inputFile, outputFile) {     
-##        require(markdown)
-##        markdownToHTML(inputFile, outputFile, stylesheet='HZA.css')  
-##    }
-##)
+options(
+    rstudio.markdownToHTML = function(inputFile, outputFile) {
+        require(markdown)
+        markdownToHTML( inputFile
+                       ,outputFile
+                       ,stylesheet = "reports/style.css"
+                       )
+    } )
 
-## -----------------------------------------------------------------------------
-## RODBC
-## -----------------------------------------------------------------------------
+## ---------- RODBC ------------------------------------------------------------
+## CLOSE all open RODBC sessions before exiting R!
 
 ##odbcStart <- function() {
-##    con <- odbcConnect("connection_name"
+##    con <<- odbcConnect("connection_name"
 ##                       ,uid = getOption("connection_name")$uid
 ##                       ,pwd = getOption("connection_name")$pwd
 ##                        ## Try believeNRows=FALSE if you get lots of errors.
@@ -84,12 +88,21 @@ lapply(packages, library, character.only=T)
 ##                       )
 ##}
 
-## If you use this, be sure to CLOSE all open RODBC sessions before exiting R.
+## Store your passwords in a way that will NEVER get uploaded to GitHub.
+## source("~/db.R")
+
+
+
+## ==============================================================================
+## Variables
+## =============================================================================
+
+
 
 ## ==============================================================================
 ## Sourced Files
 ##
-## - Function files you want loaded, regardless of which script is actually run.
+## - Files you want loaded on startup.
 ##
 ## =============================================================================
 
@@ -97,21 +110,43 @@ lapply(packages, library, character.only=T)
 ## source("lib/file_name.R")
 
 
+
 ## ==============================================================================
 ## R Setup
-#
-## Supersedes settings in your personal .Rprofile.
 ## ==============================================================================
 
-## ---------- General R Options ----------
-##options(tab.width = 4) 
+##options(tab.width = 4)
 ##options(width = 80)
 ##options(graphics.record=TRUE)
 
-.Last <- function(){
+
+
+## ==============================================================================
+## .First()
+## ==============================================================================
+
+.First <- function() {
+
+    ## Variables ---------------------------------------------------------------
+    ## Must be globally assigned (<<-) !
+
+
+    ## Sourced Files -----------------------------------------------------------
+    ## Use carefully. Everything must be declared globally.
+
     
-    ## Uncomment this to close ALL ODBC connections when exiting R.
-    ## But, it will cause an error in any file that does not open
-    ## a DB connection.
-    #odbcClose(con)
+}
+
+
+
+## ==============================================================================
+## .Last()
+## ==============================================================================
+
+.Last <- function(){
+
+    ## Uncomment this to close ALL RODBC connections on exit.
+    ## Can cause errors if you use "con" for anything other than DB connections.
+    #if(!exists("con")){odbcClose(con)}
+ 
 }
