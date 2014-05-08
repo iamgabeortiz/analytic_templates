@@ -79,7 +79,6 @@ packages <- c(
     ##,"xtable"
     ##,"xts"
     ##,"zoo"
-    
     )
 .loadLibrary <- function(packages){
     if(length(packages[!packages %in% installed.packages()]) > 0 ) {
