@@ -27,6 +27,7 @@ Describe major releases with a BRIEF description of important changes.
 
 ## Folders / Files
 
+- ~
 - data
 - graphics
 - lib
@@ -34,51 +35,60 @@ Describe major releases with a BRIEF description of important changes.
 - sql
 - tests
 
+### ~
+
+This is the root folder of your project (same place this file
+lives). Includes most of your projcet specific files.
+
+_Files_
+
+- 
 
 ### data
 
-Contains data extracts AND the R syntax needed to import the data into
-R and perform any preprocessing / cleanup as required.
+Contains data used in the analysis. Data extracts should be dated as appropriate.
 
- - import.R
- - preprocess.R
+_Files_
+
+-
 
 ### graphics
 
 Contains any graphics that have been generated as part of this
 project.
 
-- 
+_Files_
 
- 
+-
 
 ### lib
-Contains project specific function files. One function per file.
 
-- 
+Contains project specific function files.
 
- 
+_Files_
+
+-
 
 ### reports
 
-Contains any reports that have been generated as part of this project.
+Contains all generated reports.
 
-- 
+_Files_
+
+-
 
 ### sql
 
-Contains any project specific SQL written for this project. SQL files
-should contain one query / views / stored procedure per file. If the
-file creates a database object, prepent the schema name in the file
-name. If the query is meant to be run directly from R, prepent the
-file name with a lower case q.
+Contains project specific SQL queries.
 
-- 
+_Files_
+
+-
  
-
 ### tests
 
-Contains all project specific QA tests, for both R and SQL that have
-been written.
+Contains unit tests.
 
--  
+_Files_
+
+-
