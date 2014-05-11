@@ -71,14 +71,17 @@
 ## Exit
 ## =============================================================================
 
-## Saves imported data into a .RData file in the data folder.
+## Deletes Unnecessary Objects -------------------------------------------------
+## rm( list = c() )
+
+## Saves imported data into a .RData file in the data folder. ------------------
 ##save(
 ##    list = ls()
 ##    ,file = "data/foo.RData"
 ##    )
 
-## Close open ODBC connections!
+## Close open ODBC connections! ------------------------------------------------
 ##odbcClose(con)
 
-## Exit from R upon completion.
+## Exits from R upon completion. -----------------------------------------------
 ##q()
