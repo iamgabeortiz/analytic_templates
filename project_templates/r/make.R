@@ -8,7 +8,7 @@
 
 
 make <<- function(target = NULL) {
-
+   
 ###    ## NA ----------------------------------------------------------------------
 ###    if(is.null(target)) {
 ###        return( paste("No target selected.") )
@@ -41,6 +41,13 @@ make <<- function(target = NULL) {
 ###        return(0)
 ###    }    
 
+    ## Potentially useful syntax if you want to reset to a clean environment
+    ## before running a target.
+    ## Reset global environment.
+    ##rm(list=ls())
+    ##.First()
+
+    
     return(paste("No Such Target"))
 }
 
