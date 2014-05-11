@@ -18,21 +18,21 @@ make <<- function(target = NULL) {
 ###    if(target == "all") {
 ###        source("tests/input_data.R")
 ###        source("import.R" )
-###        return(0)
+###        return( paste(target, "complete", sep=" ") )
 ###    }
 ###    
 ###    ## upload ------------------------------------------------------------------
 ###    if(target == "all") {
 ###        source("tests/upload.R")
 ###        source("upload.R",echo=TRUE) ## Echo a big upload.
-###        return(0)
+###        return( paste(target, "complete", sep=" ") )
 ###    }
 ### 
 ###    ## reports -----------------------------------------------------------------
 ###    if(target == "reports") {
 ###        rm(list=ls())
 ###        source("analysis.R")
-###        return(0)
+###        return( paste(target, "complete", sep=" ") )
 ###    }
 ###    
 ###    ## tests -------------------------------------------------------------------
@@ -41,6 +41,6 @@ make <<- function(target = NULL) {
 ###        return(0)
 ###    }    
 
-    return(1)
+    return(paste("No Such Target"))
 }
 
