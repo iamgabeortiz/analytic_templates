@@ -141,7 +141,7 @@ options(
 
 ## source("lib/file_name.R")
 ## source("lib/file_name.R")
-
+## source("make.R")
 
 
 ## ==============================================================================
@@ -166,6 +166,7 @@ options(
 
     ## Sourced Files -----------------------------------------------------------
     ## Use carefully. Everything must be declared globally.
+    ## source("make.R")
 
 
 }
