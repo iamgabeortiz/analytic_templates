@@ -40,7 +40,7 @@ packages <- c(
     ##,"data.table"
     ##,"devtools"
     ##,"dplyr"
-    ##f"oreign"
+    ##foreign"
     ##,"gdata"
     ##,"ggmap"
     ##,"ggplot2"
